@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import GameList, PENDING
+from .models import GameList, PENDING, Game
 
 
 class GameListSerializer(serializers.ModelSerializer):
@@ -24,6 +24,24 @@ class GameListSerializer(serializers.ModelSerializer):
                 )
 
         return attrs
+
+
+# class GameSerializer(serializers.Serializer):
+#     game_id = serializers.IntegerField(source="id")
+#     game = serializers.CharField(source="Game")
+#     year = serializers.IntegerField(source="Year", required=False, allow_null=True)
+#     genre = serializers.CharField(source="Genre", required=False, allow_null=True)
+#     dev = serializers.CharField(source="Dev", required=False, allow_null=True)
+#     publisher = serializers.CharField(
+#         source="Publisher", required=False, allow_null=True
+#     )
+#     platform = serializers.CharField(source="Platform")
+
+
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = "__all__"
 
 
 class UserSerializer(serializers.ModelSerializer):
