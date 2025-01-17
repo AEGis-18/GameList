@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .serializer import GameListSerializer, UserSerializer, GameSerializer
 from rest_framework import viewsets, status, views
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 from .models import GameList, Game
 from django.contrib.auth.models import User
 import json
@@ -41,6 +42,17 @@ class UserView(viewsets.ModelViewSet):
 class GameView(viewsets.ModelViewSet):
     serializer_class = GameSerializer
     queryset = Game.objects.all()
+
+    def get(self, request):
+        queryset = Game.objects.all()
+        print(request)
+
+        paginator = PageNumberPagination()
+        result_page = paginator.paginate_queryset(queryset, request)
+
+        serializer = GameSerializer(result_page, many=True)
+
+        return paginator.get_paginated_response(serializer.data)
 
     def get_queryset(self):
         queryset = Game.objects.all()

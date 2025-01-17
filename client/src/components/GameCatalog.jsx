@@ -7,14 +7,16 @@ export default function GameCatalog() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [gamesPerPage] = useState(3);
+  const [gamesPerPage] = useState(30);
+  const [totalGames, setTotalGames] = useState(0);
 
   useEffect(() => {
     setLoading(true);
     async function loadGames() {
       try {
-        const res = await getAllGames();
-        setGames(res.data);
+        const res = await getAllGames(currentPage, gamesPerPage);
+        setGames(res.data.results);
+        setTotalGames(res.data.count);
       } catch (error) {
         console.error(error);
       } finally {
@@ -22,20 +24,20 @@ export default function GameCatalog() {
       }
     }
     loadGames();
-  }, []);
-
-  const indexLastGame = currentPage * gamesPerPage;
-  const indexFirstGame = indexLastGame - gamesPerPage;
-  const currentGames = games.slice(indexFirstGame, indexLastGame);
+  }, [currentPage, gamesPerPage]);
+  console.log(totalGames);
+  // const indexLastGame = currentPage * gamesPerPage;
+  // const indexFirstGame = indexLastGame - gamesPerPage;
+  // const currentGames = games.slice(indexFirstGame, indexLastGame);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
-      <ListGames gamesList={currentGames} loading={loading} />
+      <ListGames gamesList={games} loading={loading} />
       <Pagination
         gamesPerPage={gamesPerPage}
-        totalGames={games.length}
+        totalGames={totalGames}
         paginate={paginate}
       ></Pagination>
     </div>

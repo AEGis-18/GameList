@@ -11,10 +11,10 @@ export default function ListGames({ gamesList, loading }) {
       <h1>Game Catalog</h1>
       <p>{gamesList.length}</p>
       {gamesList.map((game) => (
-        <>
-          <Game key={game.id} game={game} />
+        <div key={game.id}>
+          <Game game={game} />
           <AddButton />
-        </>
+        </div>
       ))}
     </>
   );
