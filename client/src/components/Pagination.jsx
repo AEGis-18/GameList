@@ -39,7 +39,15 @@ export default function Pagination({
 
         {pageNumbers.map((number) => (
           <li key={number}>
-            <button onClick={() => paginate(number)}>{number}</button>
+            <button
+              onClick={() => paginate(number)}
+              disabled={currentPage === totalPages}
+              style={{
+                color: currentPage === number ? "#FF6347" : "#202020",
+              }}
+            >
+              {number}
+            </button>
           </li>
         ))}
 
