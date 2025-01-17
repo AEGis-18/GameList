@@ -1,18 +1,56 @@
-export default function Pagination({ gamesPerPage, totalGames, paginate }) {
+export default function Pagination({
+  gamesPerPage,
+  totalGames,
+  paginate,
+  currentPage,
+}) {
   const pageNumbers = [];
+  const totalPages = Math.ceil(totalGames / gamesPerPage);
+  const MAX_BUTTONS = 3;
 
-  for (let i = 1; i <= Math.ceil(totalGames / gamesPerPage); i++) {
+  let startPage = currentPage - Math.floor(MAX_BUTTONS / 2);
+  let endPage = currentPage + Math.floor(MAX_BUTTONS / 2);
+
+  if (startPage < 1) {
+    startPage = 1;
+    endPage = MAX_BUTTONS;
+  }
+
+  if (endPage > totalPages) {
+    endPage = totalPages;
+    startPage = totalPages - MAX_BUTTONS + 1;
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
   }
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul>
+        <li>
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            &lt; -
+          </button>
+        </li>
+
         {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
+          <li key={number}>
             <button onClick={() => paginate(number)}>{number}</button>
           </li>
         ))}
+
+        <li>
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            - &gt;
+          </button>
+        </li>
       </ul>
     </nav>
   );

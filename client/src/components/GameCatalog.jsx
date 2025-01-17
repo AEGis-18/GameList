@@ -39,6 +39,7 @@ export default function GameCatalog() {
         gamesPerPage={gamesPerPage}
         totalGames={totalGames}
         paginate={paginate}
+        currentPage={currentPage}
       ></Pagination>
     </div>
   );
