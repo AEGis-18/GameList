@@ -29,7 +29,7 @@ class GameList(models.Model):
         null=True, blank=True, validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
     game_state = models.IntegerField(choices=STATES, default=PENDING)
-    played_time = models.DurationField(null=True, blank=True)
+    played_time = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)])
 
     class Meta:
         constraints = [
