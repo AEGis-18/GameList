@@ -12,12 +12,11 @@ class Game(models.Model):
     publisher = models.CharField(max_length=100, blank=True, null=True)
     platform = models.CharField(max_length=100)
 
-
-PENDING = 0
-PLAYING = 1
-FINISHED = 2
-
+PENDING="pending"
+PLAYING='playing'
+FINISHED='finished'
 STATES = [(PENDING, "pending"), (PLAYING, "playing"), (FINISHED, "finished")]
+
 
 
 # Create your models here.
@@ -28,7 +27,7 @@ class GameList(models.Model):
     score = models.IntegerField(
         null=True, blank=True, validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
-    game_state = models.IntegerField(choices=STATES, default=PENDING)
+    game_state = models.CharField(choices=STATES, default=PENDING, max_length=8)
     played_time = models.IntegerField(null=True, blank=True, validators=[MinValueValidator(0)])
 
     class Meta:
