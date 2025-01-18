@@ -13,7 +13,8 @@ export default function ListGames({ gamesList, loading }) {
       {gamesList.map((game) => (
         <div key={game.id}>
           <Game game={game} />
-          <AddButton />
+
+          <AddButton game_id={game.id} />
         </div>
       ))}
     </>

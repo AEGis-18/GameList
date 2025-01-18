@@ -3,7 +3,7 @@ import { getAllGames } from "../api/games.api";
 import ListGames from "./ListGames";
 import Pagination from "./Pagination";
 
-export default function GameCatalog() {
+export default function GameCatalog({ user }) {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,9 +26,6 @@ export default function GameCatalog() {
     loadGames();
   }, [currentPage, gamesPerPage]);
   console.log(totalGames);
-  // const indexLastGame = currentPage * gamesPerPage;
-  // const indexFirstGame = indexLastGame - gamesPerPage;
-  // const currentGames = games.slice(indexFirstGame, indexLastGame);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
