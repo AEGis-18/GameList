@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { postAddGame } from "../api/games.api";
 import { useLocation } from "react-router-dom";
+import USERID from "../components/USERID.JS";
 
 export default function AddGamePage() {
   const location = useLocation();
@@ -22,7 +23,7 @@ export default function AddGamePage() {
   };
 
   const onSubmit = handleSubmit((data) => {
-    data["user"] = 2;
+    data["user"] = USERID;
     data["game"] = game;
     data.game_state = data.game_state.toLowerCase();
     data.score = Number(data.score);
