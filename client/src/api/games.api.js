@@ -41,4 +41,8 @@ export const postAddGame = (game_info) => {
   return gamesApi.post("game-lists/", game_info);
 };
 
+export const getUserId = () => {
+  return gamesApi.get("user-id/");
+};
+
 export default gamesApi;

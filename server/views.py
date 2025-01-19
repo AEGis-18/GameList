@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import GameList, Game
 from django.contrib.auth import authenticate, login,logout
 from django.http import JsonResponse
@@ -104,3 +105,11 @@ class GameView(viewsets.ModelViewSet):
         if game_id is not None:
             queryset = queryset.filter(id=game_id)
         return queryset
+
+class GetUserIdView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_id = request.user.id
+        return Response({"user_id": user_id}, status=status.HTTP_200_OK)
