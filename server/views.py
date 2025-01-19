@@ -2,55 +2,83 @@ from .serializer import GameListSerializer, UserSerializer, GameSerializer
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import GameList, Game
-from django.contrib.auth import authenticate, login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_POST
 from django.contrib.auth.models import User
 import json
 
+
 class RegisterView(APIView):
-    def post(self,request):
-        username = request.data.get('username')
-        password = request.data.get('password')
+    def post(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
 
         if User.objects.filter(username=username).exists():
-            return Response({'error': 'Username already exists'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                {"error": "Username already exists"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
         user = User.objects.create_user(username=username, password=password)
-        return Response({'message': 'User created successfully'}, status=status.HTTP_201_CREATED)
+        return Response(
+            {"message": "User created successfully"}, status=status.HTTP_201_CREATED
+        )
+
 
 class LoginView(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
-        username = request.data.get('username')
-        password = request.data.get('password')
+        username = request.data.get("username")
+        password = request.data.get("password")
 
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
             refresh = RefreshToken.for_user(user)
-            return Response({'access': str(refresh.access_token), 'refresh': str(refresh)}, status=status.HTTP_200_OK)
+            return Response(
+                {"access": str(refresh.access_token), "refresh": str(refresh)},
+                status=status.HTTP_200_OK,
+            )
 
-        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(
+            {"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
+        )
+
 
 class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
-        logout(request)
-        return Response({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
+        try:
+            refresh_token = request.data.get("refresh_token")
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(
+                {"message": "Logged out successfully"}, status=status.HTTP_200_OK
+            )
+        except Exception as ex:
+            return Response(
+                {"detail": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST
+            )
+
 
 class SessionView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         user = request.user
-        return Response({'isAuthenticated': True, 'username': user.username}, status=status.HTTP_200_OK)
-
+        return Response(
+            {"isAuthenticated": True, "username": user.username},
+            status=status.HTTP_200_OK,
+        )
 
 
 # Create your views here.
@@ -105,6 +133,7 @@ class GameView(viewsets.ModelViewSet):
         if game_id is not None:
             queryset = queryset.filter(id=game_id)
         return queryset
+
 
 class GetUserIdView(APIView):
     authentication_classes = [JWTAuthentication]
