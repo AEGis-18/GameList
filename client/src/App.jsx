@@ -5,18 +5,42 @@ import Navigation from "./components/Navigation";
 import AddGamePage from "./pages/AddGamePage";
 import SignInPage from "./pages/SigninPage";
 import LoginPage from "./pages/LoginPage";
+import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Navigation />
       <Routes>
-        <Route path="/" element={<Navigate to="/games" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signin" element={<SignInPage />} />
-        <Route path="/games" element={<GamesPage />} />
-        <Route path="/list" element={<UserListPage />} />
-        <Route path="/add-game" element={<AddGamePage />} />
+        <Route
+          path="/games"
+          element={
+            <PrivateRoute>
+              <Navigation />
+              <GamesPage></GamesPage>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/list"
+          element={
+            <PrivateRoute>
+              <Navigation />
+              <UserListPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/add-game"
+          element={
+            <PrivateRoute>
+              <Navigation />
+              <AddGamePage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
