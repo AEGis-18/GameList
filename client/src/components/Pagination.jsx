@@ -4,6 +4,10 @@ export default function Pagination({
   paginate,
   currentPage,
 }) {
+  if (totalGames <= 30) {
+    return <nav></nav>;
+  }
+
   const pageNumbers = [];
   const totalPages = Math.ceil(totalGames / gamesPerPage);
   const MAX_BUTTONS = 3;

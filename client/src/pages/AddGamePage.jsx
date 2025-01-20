@@ -59,6 +59,7 @@ export default function AddGamePage() {
       console.log(data);
 
       await postAddGame(data);
+      //TODO Go to Games page
     } catch (err) {
       console.log(err);
     }
