@@ -1,4 +1,11 @@
 export default function Game({ game }) {
+  if (game == null) {
+    return (
+      <div>
+        <p>..loading</p>
+      </div>
+    );
+  }
   return (
     <div>
       <h3>
