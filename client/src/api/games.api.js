@@ -27,8 +27,8 @@ export const getAllGames = (currentPage = 1) => {
   });
 };
 
-export const getUserGames = (currentPage = 1, user) => {
-  return gamesApi.get("games/", {
+export const getUserList = (currentPage = 1, user) => {
+  return gamesApi.get("game-lists/", {
     params: { page: currentPage, user: user },
   });
 };
