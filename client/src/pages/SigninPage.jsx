@@ -12,14 +12,13 @@ export default function SignInPage() {
     event.preventDefault();
 
     try {
-      //TODO
       const response = await gamesApi.post("/signin/", {
         username,
         password,
       });
 
       if (response.data.message === "User created successfully") {
-        navigate("/login"); //TODO
+        navigate("/login");
       }
     } catch (err) {
       setError("An error occurred or username already exists.");

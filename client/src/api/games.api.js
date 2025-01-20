@@ -34,7 +34,7 @@ export const getUserGames = (currentPage = 1, user) => {
 };
 
 export const getGameInfo = (game_id) => {
-  return gamesApi.get(`/games/${toString(game_id)}/`);
+  return gamesApi.get(`/games/?id=${game_id}`);
 };
 
 export const postAddGame = (game_info) => {

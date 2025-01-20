@@ -19,7 +19,7 @@ export default function LoginPage() {
 
       if (response.data.access) {
         localStorage.setItem("accessToken", response.data.access);
-        navigate("/games"); //TODO
+        navigate("/games");
       }
     } catch (err) {
       setError("Invalid username or password.");

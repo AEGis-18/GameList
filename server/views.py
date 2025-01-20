@@ -39,7 +39,7 @@ class LoginView(APIView):
 
         user = authenticate(username=username, password=password)
         if user:
-            login(request, user)
+            #login(request, user)
             refresh = RefreshToken.for_user(user)
             return Response(
                 {"access": str(refresh.access_token), "refresh": str(refresh)},
@@ -74,9 +74,17 @@ class SessionView(APIView):
     def get(self, request):
         user = request.user
         return Response(
-            {"isAuthenticated": True, "username": user.username},
+            {
+                "isAuthenticated": True,
+                "user": {
+                    "username": user.username,
+                    "email": user.email, 
+                    "id": user.id
+                }
+            },
             status=status.HTTP_200_OK,
         )
+
 
 
 # Create your views here.

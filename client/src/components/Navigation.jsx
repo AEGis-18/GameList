@@ -5,6 +5,8 @@ import { getUserId } from "../api/games.api";
 
 export default function Navigation() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
@@ -12,6 +14,22 @@ export default function Navigation() {
 
     navigate("/login");
   };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userIdResponse = await getUserId();
+        setUser(userIdResponse.data?.user_id || "Guest");
+      } catch (err) {
+        console.error("Error fetching user:", err);
+        setUser("Guest");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   return (
     <div>
@@ -22,6 +40,7 @@ export default function Navigation() {
         <Link to="/list">List</Link>
       </h1>
       <button onClick={handleLogout}>Log Out</button>
+      <h2>{user}</h2>
       <hr />
     </div>
   );

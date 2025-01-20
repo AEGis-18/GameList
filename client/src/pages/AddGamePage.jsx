@@ -1,18 +1,42 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { postAddGame } from "../api/games.api";
 import { useLocation } from "react-router-dom";
-import { getUserId } from "../api/games.api";
+import { getUserId, getGameInfo } from "../api/games.api";
+import Game from "../components/Game";
 
 export default function AddGamePage() {
   const location = useLocation();
   const game = location.state?.game;
 
   const scores = Array.from({ length: 10 }, (_, i) => i + 1);
+  scores.unshift(null);
   const states = ["Pending", "Playing", "Finished"];
 
   const { register, handleSubmit, setValue } = useForm();
   const [gameState, setGameState] = useState("Pending");
+  const [gameInfo, setGameInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchGameInfo = async () => {
+      if (game) {
+        try {
+          const res = await getGameInfo(game);
+          // if (res?.data?.results && res.data.results.length > 0) {
+          setGameInfo(res.data.results[0]);
+          /* } else {
+            console.error("No game info found.");
+            setGameInfo(null);
+          }*/
+        } catch (error) {
+          console.error("Error fetching game info:", error);
+          setGameInfo(null);
+        }
+      }
+    };
+
+    fetchGameInfo();
+  }, [game]);
 
   const onStateChange = (event) => {
     setGameState(event.target.value);
@@ -28,8 +52,11 @@ export default function AddGamePage() {
       data["user"] = user_id.data["user_id"];
       data["game"] = game;
       data.game_state = data.game_state.toLowerCase();
-      data.score = Number(data.score);
-      data.played_time = Number(data.played_time);
+      data.score = data.score === "" ? null : Number(data.score);
+      data.played_time =
+        data.played_time === "" ? null : Number(data.played_time);
+
+      console.log(data);
 
       await postAddGame(data);
     } catch (err) {
@@ -39,7 +66,7 @@ export default function AddGamePage() {
 
   return (
     <div>
-      <p>{game}</p>
+      {gameInfo ? <Game game={gameInfo} /> : <p>loading..</p>}
       <form onSubmit={onSubmit}>
         <label>State:</label>
         <select {...register("game_state")} onChange={onStateChange}>

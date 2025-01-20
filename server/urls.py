@@ -13,5 +13,5 @@ urlpatterns = [
     path('api/v1/login/', views.LoginView.as_view(), name='login'),
     path('api/v1/logout/', views.LogoutView.as_view(), name='logout'),
     path('api/v1/session/', views.SessionView.as_view(), name='session'),
-    path('api/v1/user-id/', views.GetUserIdView.as_view(), name='session'),
+    path('api/v1/user-id/', views.GetUserIdView.as_view(), name='userId'),
 ]
