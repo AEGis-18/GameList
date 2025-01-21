@@ -10,10 +10,10 @@ export default function ListItemInfo({ listItem, gameInfo }) {
   }
 
   return (
-    <div>
+    <div className="flex flex-col h-full">
       <Game game={gameInfo} loading={false}></Game>
 
-      <div className="text-2xl">
+      <div className="text-2xl mt-auto ">
         {" "}
         <h3>
           <strong>State: </strong>

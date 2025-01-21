@@ -10,38 +10,40 @@ import PrivateRoute from "./components/PrivateRoute";
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signin" element={<SignInPage />} />
-        <Route
-          path="/games"
-          element={
-            <PrivateRoute>
-              <Navigation />
-              <GamesPage></GamesPage>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/list"
-          element={
-            <PrivateRoute>
-              <Navigation />
-              <UserListPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/add-game"
-          element={
-            <PrivateRoute>
-              <Navigation />
-              <AddGamePage />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <div className="font-display">
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route
+            path="/games"
+            element={
+              <PrivateRoute>
+                <Navigation />
+                <GamesPage></GamesPage>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/list"
+            element={
+              <PrivateRoute>
+                <Navigation />
+                <UserListPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/add-game"
+            element={
+              <PrivateRoute>
+                <Navigation />
+                <AddGamePage />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

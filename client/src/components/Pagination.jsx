@@ -30,14 +30,17 @@ export default function Pagination({
   }
 
   return (
-    <nav>
-      <ul>
+    <nav className="flex justify-center pt-4 pb-8">
+      <ul className="flex gap-1">
         <li>
           <button
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
+            className={` text-black rounded-sm px-1 font-bold ${
+              currentPage === 1 ? "bg-gray-400" : "bg-white"
+            }`}
           >
-            &lt; -
+            &#x2190;
           </button>
         </li>
 
@@ -45,10 +48,11 @@ export default function Pagination({
           <li key={number}>
             <button
               onClick={() => paginate(number)}
-              disabled={currentPage === totalPages}
-              style={{
-                color: currentPage === number ? "#FF6347" : "#202020",
-              }}
+              className={` rounded-sm px-1 font-bold ${
+                currentPage === number
+                  ? "bg-blue-400 text-white"
+                  : "text-black bg-white"
+              }`}
             >
               {number}
             </button>
@@ -59,8 +63,11 @@ export default function Pagination({
           <button
             onClick={() => paginate(currentPage + 1)}
             disabled={currentPage === totalPages}
+            className={` text-black rounded-sm px-1 font-bold ${
+              currentPage === totalPages ? "bg-gray-200" : "bg-white"
+            }`}
           >
-            - &gt;
+            &#x2192;
           </button>
         </li>
       </ul>

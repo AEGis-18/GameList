@@ -27,7 +27,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex items-center justify-center bg-slate-500 h-screen text-xl">
+    <div className="flex items-center justify-center h-screen text-xl">
       <div className="p-4 bg-white rounded shadow-md w-full max-w-lg">
         <h2 className="mb-4 text-2xl text-black text-left ">Sign in</h2>
         <form onSubmit={signin}>
