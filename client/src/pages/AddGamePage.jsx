@@ -77,7 +77,7 @@ export default function AddGamePage() {
         <div className="p-4 bg-white rounded shadow-md max-w-lg h-fit space-y-4">
           <div>{gameInfo ? <Game game={gameInfo} /> : <p>loading..</p>}</div>
           <form onSubmit={onSubmit}>
-            <div className="=flex flex-col ">
+            <div className=" ">
               <label>State: </label>
               <select
                 className="text-black mx-2 p-1 border bg-gray-100 border-gray-300 rounded-md cursor-pointer"

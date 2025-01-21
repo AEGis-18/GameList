@@ -29,9 +29,9 @@ export default function SignUpPage() {
   return (
     <div className="flex items-center justify-center h-screen text-xl">
       <div className="p-4 bg-white rounded shadow-md w-full max-w-lg">
-        <h2 className="mb-4 text-2xl text-black text-left ">Sign Up</h2>
+        <h2 className="mb-4 text-2xl text-black text-left px-1  ">Sign Up</h2>
         <form onSubmit={signUp}>
-          <div className="text-left  mb-1 text-black pb-1">
+          <div className="text-left  mb-1 text-black pb-1 px-1">
             <h3>User: </h3>
           </div>
           <input
@@ -39,9 +39,9 @@ export default function SignUpPage() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
-            className="bg-slate-200 rounded w-full text-black"
+            className="bg-slate-200 rounded w-full text-black px-1"
           />
-          <div className="text-left  mb-1 text-black pb-1">
+          <div className="text-left  mb-1 text-black pb-1 px-1">
             <h3>Password: </h3>
           </div>
 
@@ -50,7 +50,7 @@ export default function SignUpPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            className="bg-slate-200 rounded w-full text-black"
+            className="bg-slate-200 rounded w-full text-black px-1"
           />
           <button
             type="submit"
