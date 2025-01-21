@@ -8,11 +8,10 @@ export default function UserListItem({ userList, userGames }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
         {userList.map((item) => {
           const gameInfo = userGames.find((game) => game[0].id === item.game);
-          console.log("elemento", gameInfo ? gameInfo[0] : "");
           return (
             <div
               key={item.id}
-              className="border p-4 text-start bg-gray-700 rounded flex flex-col h-full"
+              className="border p-4 text-start bg-white text-black rounded flex flex-col h-full"
             >
               <ListItemInfo
                 listItem={item}

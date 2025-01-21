@@ -12,8 +12,7 @@ export default function ListItemInfo({ listItem, gameInfo }) {
   return (
     <div>
       <Game game={gameInfo} loading={false}></Game>
-      <h2>Id: {listItem.id}</h2>
-      <h2>User:{listItem.user}</h2>
+
       <div className="text-2xl">
         {" "}
         <h3>

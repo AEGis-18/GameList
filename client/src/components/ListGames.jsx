@@ -13,7 +13,7 @@ export default function ListGames({ gamesList, loading }) {
         {gamesList.map((game) => (
           <div
             key={game.id}
-            className="border p-4 text-start bg-gray-700 rounded flex flex-col h-full"
+            className="border p-4 text-start bg-white text-black rounded flex flex-col h-full"
           >
             <Game game={game} />
             <div className="mt-auto">

@@ -8,7 +8,7 @@ export default function Game({ game }) {
   }
   return (
     <div>
-      <h2 className="font-bold text-center">{game.game}</h2>
+      <h2 className="font-bold text-center text-2xl">{game.game}</h2>
       <h3>
         <strong>Release year: </strong>
         {game.year}

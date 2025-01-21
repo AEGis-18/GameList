@@ -28,6 +28,9 @@ export const getAllGames = (currentPage = 1) => {
 };
 
 export const getUserList = (currentPage = 1, user) => {
+  if (!user) {
+    return { data: { results: [], count: 0 } };
+  }
   return gamesApi.get("game-lists/", {
     params: { page: currentPage, user: user },
   });
