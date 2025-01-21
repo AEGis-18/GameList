@@ -5,16 +5,30 @@ export default function ListItemInfo({ listItem, gameInfo }) {
     return <p>loading...</p>;
   }
 
+  function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }
+
   return (
     <div>
       <Game game={gameInfo} loading={false}></Game>
       <h2>Id: {listItem.id}</h2>
       <h2>User:{listItem.user}</h2>
-      <h3>State: {listItem.game_state}</h3>
-      <p>Game score:{listItem.score ? listItem.score : " --"}/10</p>
-      <p>
-        Played time:{listItem.played_time ? listItem.played_time : " -- "} hs
-      </p>
+      <div className="text-2xl">
+        {" "}
+        <h3>
+          <strong>State: </strong>
+          {capitalize(listItem.game_state)}
+        </h3>
+        <p>
+          <strong>Game score: </strong>
+          {listItem.score ? listItem.score : " --"}/10
+        </p>
+        <p>
+          <strong>Played time: </strong>
+          {listItem.played_time ? listItem.played_time : " -- "} hs
+        </p>
+      </div>
     </div>
   );
 }

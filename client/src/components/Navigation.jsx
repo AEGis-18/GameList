@@ -32,16 +32,25 @@ export default function Navigation() {
   }, []);
 
   return (
-    <div>
-      <h1>
-        <Link to="/games">Games</Link>
-      </h1>
-      <h1>
-        <Link to="/list">List</Link>
-      </h1>
-      <button onClick={handleLogout}>Log Out</button>
-      <h2>{user}</h2>
-      <hr />
+    <div className="bg-blue-500 text-white text-xl w-full fixed top-0 left-0 z-50 p-4">
+      <div className="flex items-center justify-between w-full">
+        <div className="p-2 border-white border-r w-32 text-center">
+          <h1>
+            <Link to="/games">Games</Link>
+          </h1>
+        </div>
+        <div className="p-2 border-white border-r text-center w-32">
+          <h1>
+            <Link to="/list">List</Link>
+          </h1>
+        </div>
+
+        <div className="flex-grow"></div>
+
+        <div className="border-white border-l p-2 text-center w-32">
+          <button onClick={handleLogout}>Log Out</button>
+        </div>
+      </div>
     </div>
   );
 }

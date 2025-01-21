@@ -10,7 +10,12 @@ export default function AddButton({ game_id }) {
 
   return (
     <div>
-      <button onClick={() => handleAddGame(game_id)}>Add Game</button>
+      <button
+        className="bg-blue-500 text-white w-full p-2 rounded mt-6 justify-end cursor-pointer"
+        onClick={() => handleAddGame(game_id)}
+      >
+        Add Game
+      </button>
     </div>
   );
 }

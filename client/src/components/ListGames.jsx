@@ -8,15 +8,20 @@ export default function ListGames({ gamesList, loading }) {
 
   return (
     <>
-      <h1>Game Catalog</h1>
-      <p>{gamesList.length}</p>
-      {gamesList.map((game) => (
-        <div key={game.id}>
-          <Game game={game} />
-
-          <AddButton game_id={game.id} />
-        </div>
-      ))}
+      <h1 className="text-2xl font-bold mb-4 px-4">Game Catalog</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
+        {gamesList.map((game) => (
+          <div
+            key={game.id}
+            className="border p-4 text-start bg-gray-700 rounded flex flex-col h-full"
+          >
+            <Game game={game} />
+            <div className="mt-auto">
+              <AddButton game_id={game.id} />
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }

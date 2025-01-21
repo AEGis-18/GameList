@@ -27,24 +27,40 @@ export default function SignInPage() {
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={signin}>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Sign in</button>
-      </form>
-      {error && <p>{error}</p>}
+    <div className="flex items-center justify-center bg-slate-500 h-screen text-xl">
+      <div className="p-4 bg-white rounded shadow-md w-full max-w-lg">
+        <h2 className="mb-4 text-2xl text-black text-left ">Sign in</h2>
+        <form onSubmit={signin}>
+          <div className="text-left  mb-1 text-black pb-1">
+            <h3>User: </h3>
+          </div>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            className="bg-slate-200 rounded w-full text-black"
+          />
+          <div className="text-left  mb-1 text-black pb-1">
+            <h3>Password: </h3>
+          </div>
+
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="bg-slate-200 rounded w-full text-black"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white w-full p-2 rounded mt-6 cursor-pointer"
+          >
+            Sign in
+          </button>
+        </form>
+        {error && <p className="text-red-600 font-bold text-sm">{error}</p>}
+      </div>
     </div>
   );
 }

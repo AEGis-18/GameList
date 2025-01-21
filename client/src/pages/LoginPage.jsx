@@ -27,25 +27,55 @@ export default function LoginPage() {
     }
   };
 
+  const handleSignIn = () => {
+    navigate("/signin");
+  };
+
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={login}>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Login</button>
-      </form>
-      {error && <p>{error}</p>}
+    <div className="flex items-center justify-center bg-slate-500 h-screen text-xl">
+      <div className="p-4 bg-white rounded shadow-md w-full max-w-lg">
+        <h2 className="mb-4 text-2xl text-black text-left ">Log in</h2>
+        <form onSubmit={login}>
+          <div className="text-left  mb-1 text-black pb-1">
+            <h3>User: </h3>
+          </div>
+
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Username"
+            className="bg-slate-200 rounded w-full text-black"
+          />
+
+          <div className="text-left  mb-1 text-black pt-4 pb-1">
+            <h3>Password: </h3>
+          </div>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            className="bg-slate-200 rounded w-full text-black"
+          />
+
+          <button
+            className="bg-blue-500 text-white w-full p-2 rounded mt-6 cursor-pointer"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+        <div className="flex justify-end mt-2">
+          <button
+            onClick={handleSignIn}
+            className="text-sm text-blue-400 w-auto "
+          >
+            Don't have an account? Sign in
+          </button>
+        </div>
+        {error && <p className="text-red-600 font-bold text-sm">{error}</p>}
+      </div>
     </div>
   );
 }

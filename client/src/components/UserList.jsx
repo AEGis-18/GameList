@@ -64,7 +64,7 @@ export default function UserList() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
+    <div className="mt-24">
       <UserListItem userList={userList} userGames={userGames} />
       <Pagination
         gamesPerPage={gamesPerPage}

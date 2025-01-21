@@ -30,7 +30,7 @@ export default function GameCatalog({ user }) {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div>
+    <div className="mt-24">
       <ListGames gamesList={games} loading={loading} />
       <Pagination
         gamesPerPage={gamesPerPage}

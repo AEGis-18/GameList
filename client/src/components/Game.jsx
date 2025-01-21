@@ -8,10 +8,22 @@ export default function Game({ game }) {
   }
   return (
     <div>
+      <h2 className="font-bold text-center">{game.game}</h2>
       <h3>
-        {game.id}. {game.game}
+        <strong>Release year: </strong>
+        {game.year}
       </h3>
-      <p>{game.dev}</p>
+
+      <p>
+        <strong>Developed by: </strong>
+        {game.dev}
+      </p>
+      <p>
+        <strong>Published by:</strong> {game.publisher}
+      </p>
+      <p>
+        <strong>Platform:</strong> {game.platform}
+      </p>
     </div>
   );
 }
