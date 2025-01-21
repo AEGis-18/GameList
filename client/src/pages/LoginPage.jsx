@@ -27,8 +27,8 @@ export default function LoginPage() {
     }
   };
 
-  const handleSignIn = () => {
-    navigate("/signin");
+  const handleSignUp = () => {
+    navigate("/signup");
   };
 
   return (
@@ -68,10 +68,10 @@ export default function LoginPage() {
         </form>
         <div className="flex justify-end mt-2">
           <button
-            onClick={handleSignIn}
+            onClick={handleSignUp}
             className="text-sm text-blue-400 w-auto "
           >
-            Don't have an account? Sign in
+            Don't have an account? Sign up
           </button>
         </div>
         {error && <p className="text-red-600 font-bold text-sm">{error}</p>}

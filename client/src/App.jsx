@@ -3,7 +3,7 @@ import GamesPage from "./pages/GamesPage";
 import UserListPage from "./pages/UserListPage";
 import Navigation from "./components/Navigation";
 import AddGamePage from "./pages/AddGamePage";
-import SignInPage from "./pages/SigninPage";
+import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
 
@@ -14,7 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route
             path="/games"
             element={

@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import gamesApi from "../api/games.api";
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const signin = async (event) => {
+  const signUp = async (event) => {
     event.preventDefault();
 
     try {
@@ -29,8 +29,8 @@ export default function SignInPage() {
   return (
     <div className="flex items-center justify-center h-screen text-xl">
       <div className="p-4 bg-white rounded shadow-md w-full max-w-lg">
-        <h2 className="mb-4 text-2xl text-black text-left ">Sign in</h2>
-        <form onSubmit={signin}>
+        <h2 className="mb-4 text-2xl text-black text-left ">Sign Up</h2>
+        <form onSubmit={signUp}>
           <div className="text-left  mb-1 text-black pb-1">
             <h3>User: </h3>
           </div>
