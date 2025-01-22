@@ -1,12 +1,11 @@
 import os
 import django
 
-# Establecer la configuración del proyecto Django
+
 os.environ.setdefault(
     "DJANGO_SETTINGS_MODULE", "GameList.settings"
-)  # Cambia 'tu_proyecto' por el nombre de tu proyecto
+)
 
-# Inicializar Django
 django.setup()
 
 import json
